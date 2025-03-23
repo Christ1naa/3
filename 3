@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор прибутку від СЕС</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 500px; margin: auto; padding: 20px; }
+        input, button { margin: 10px; padding: 10px; width: 90%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Калькулятор прибутку від сонячної електростанції</h2>
+        <label>Встановлена потужність (кВт):</label>
+        <input type="number" id="power" placeholder="Введіть потужність">
+        
+        <label>Тариф (грн/кВт·год):</label>
+        <input type="number" id="tariff" placeholder="Введіть тариф">
+        
+        <label>Прогнозована генерація (кВт·год/рік):</label>
+        <input type="number" id="generation" placeholder="Введіть генерацію">
+        
+        <button onclick="calculateProfit()">Розрахувати прибуток</button>
+        <h3>Очікуваний прибуток: <span id="profit">0</span> грн/рік</h3>
+    </div>
+
+    <script>
+        function calculateProfit() {
+            let power = parseFloat(document.getElementById('power').value);
+            let tariff = parseFloat(document.getElementById('tariff').value);
+            let generation = parseFloat(document.getElementById('generation').value);
+            
+            if (isNaN(power) || isNaN(tariff) || isNaN(generation)) {
+                alert("Будь ласка, введіть коректні значення!");
+                return;
+            }
+            
+            let profit = generation * tariff;
+            document.getElementById('profit').textContent = profit.toFixed(2);
+        }
+    </script>
+</body>
+</html>
